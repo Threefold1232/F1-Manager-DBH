@@ -27,7 +27,7 @@ public class Car {
         }
         // bei Kurve, beschleunigung abziehen
         if (section == TrackSection.Curve){
-            Speed = Speed / Acceleration;
+            Speed = Speed / (float)(1.5*Acceleration);
         }
         // bei Gerade, beschleunigung 1,5 mal adidieren
         if (section == TrackSection.Straight){
@@ -37,6 +37,12 @@ public class Car {
         if (Speed > MaxSpeed){
             Speed = MaxSpeed;
         }
-
     }
+
+    public void Print(){
+        String output = this.Team + " (" + this.Driver.Name + "): " + this.Speed + " km/h (Acc: " + this.Acceleration + " x , Max: " + this.MaxSpeed + " km/h)";
+        System.out.println(output);
+        System.out.println("---------------------------------");
+    }
+
 }

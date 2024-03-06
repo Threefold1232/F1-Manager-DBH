@@ -7,21 +7,20 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Track {
     public String Name;
     int Length;
-    static int Corners;
-    static int Straights;
+    int Corners;
+    int Straights;
 
-    public Track(){
+    public Track(String name, int length, int corners, int straights) {
+        Name = name;
+        Length = length;
+        Corners = corners;
+        Straights = straights;
+    }
 
-    };
-
-    public ArrayList<TrackSection> GenerateTrack(String Name, int length, int corners, int straights)
+    public ArrayList<TrackSection> GenerateTrack()
     {
-        this.Name = Name;
-        this.Length =length;
-        this.Corners = corners;
-        this.Straights = straights;
-
         ArrayList<TrackSection> track = new ArrayList<TrackSection>();
+
         for (int i = 0; i < Corners; i++){
             track.add(TrackSection.Curve);
         }
@@ -36,6 +35,8 @@ public class Track {
         }
 
         Collections.shuffle(track);
+        // TODO: prüfe an dieser Stelle, ob im Track niemals zwei Kurven aufeinadner folgen und niemals mehr als drei Gerade aufeinander folgen => bei Widersprüchen einfach nochmal shuffeln
+
         return track;
     }
 

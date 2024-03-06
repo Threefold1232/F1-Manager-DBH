@@ -4,44 +4,30 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class GameEngine {
+
+    private ArrayList<Driver> _drivers;
+    private ArrayList<Car> _cars;
+    private ArrayList<Track> _tracks;
+
+    public GameEngine() {
+        GenerateDrivers();
+        GenerateCars();
+        GenerateTracks();
+    }
+
     public ArrayList<Car> GetAllRacingCars() {
 
         ArrayList<Car> allCars  = new ArrayList<>();
 
-        ArrayList<Driver> drivers = new ArrayList<>();
-        ArrayList<Car> cars  = new ArrayList<>();
-
-        drivers.add(new Driver("Verstappen", 30, 10));
-        drivers.add(new Driver("Hamilton", 20, 20));
-        drivers.add(new Driver("Norris", 10, 30));
-
-        cars.add(new Car("RedBull", 100, 13, 350));
-        cars.add(new Car("Mercedes", 130, 1.1, 300));
-        cars.add(new Car("McLaren", 80, 1.2, 330));
-
         for (int i = 0; i < 3; i++) {
-            int randomNum = GetRandomNumber(0, drivers.size());
-            int secondRandomNum = GetRandomNumber(0, cars.size());
-
-            Driver driver = drivers.get(randomNum);
-            Car car = cars.get(secondRandomNum);
-
-            car.SetDriver(driver);
+            Car car = this._cars.get(i);
+            car.SetDriver(this._drivers.get(i));
+            car.Print();
             allCars.add(car);
-
-            System.out.println("Team " + car.Team);
-            System.out.println("Driver " + car.Driver.Name);
-            System.out.println("Speed " + car.Speed);
-            System.out.println("Acceleration " + car.Acceleration);
-            System.out.println("MaxSpeed " + car.MaxSpeed);
-            System.out.println("---------------------------------");
-            System.out.println("                                 ");
-
-            drivers.remove(randomNum);
 
             try
             {
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(1);
             }
             catch (InterruptedException e)
             {
@@ -55,10 +41,10 @@ public class GameEngine {
     public void start()
     {
         var cars = GetAllRacingCars();
-        Track track = new Track();
-        var track1 = track.GenerateTrack("Monaco", 500, 8, 6);
+        Track track = new Track("Monaco", 5000, 8, 6);
+        var track1 = track.GenerateTrack();
 
-        System.out.println(track1);
+        System.out.println("Track: " + track.Name + " (" + track1 + ")");
 
         for (TrackSection section : track1){
             System.out.println("                                 ");
@@ -75,11 +61,7 @@ public class GameEngine {
             }
                 for (Car car : cars){
                     car.Drive(section);
-                    System.out.println("Name: " + car.Driver.Name);
-                    System.out.println("Speed: " + car.Speed);
-                    System.out.println("Acceleration " + car.Acceleration);
-                    System.out.println("---------------------------------");
-                    System.out.println("                                 ");
+                    car.Print();
                 }
         }
     }
@@ -89,6 +71,32 @@ public class GameEngine {
         int randomNum = ThreadLocalRandom.current().nextInt(min, max);
 
         return randomNum;
+    }
+
+    private void SetRandomDriverIntoRandomCar()
+    {
+
+
+    }
+
+    private void GenerateDrivers(){
+        this._drivers = new ArrayList<Driver>();
+        this._drivers.add(new Driver("Verstappen", 30, 15));
+        this._drivers.add(new Driver("Hamilton", 16, 8));
+        this._drivers.add(new Driver("Norris", 11, 19));
+        Collections.shuffle(this._drivers);
+    }
+
+    private void GenerateCars(){
+        this._cars = new ArrayList<Car>();
+        this._cars.add(new Car("RedBull", 100, 1.4, 350));
+        this._cars.add(new Car("Mercedes", 90, 1.1, 300));
+        this._cars.add(new Car("McLaren", 85, 1.2, 330));
+        Collections.shuffle(this._cars);
+    }
+
+    private void GenerateTracks(){
+
     }
 
 
