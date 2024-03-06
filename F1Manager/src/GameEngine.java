@@ -8,6 +8,11 @@ public class GameEngine {
     private ArrayList<Driver> _drivers;
     private ArrayList<Car> _cars;
     private ArrayList<Track> _tracks;
+    public List<TrackSection> track1;
+
+    public ArrayList<Track> get_tracks() {
+        return _tracks;
+    }
 
     public GameEngine() {
         GenerateDrivers();
@@ -42,7 +47,7 @@ public class GameEngine {
     {
         var cars = GetAllRacingCars();
         Track track = new Track("Monaco", 5000, 8, 6);
-        var track1 = track.GenerateTrack();
+        track1 = track.GenerateTrack();
 
         System.out.println("Track: " + track.Name + " (" + track1 + ")");
 

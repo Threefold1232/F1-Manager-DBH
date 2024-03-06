@@ -17,7 +17,7 @@ public class Race {
     public void Simulate() {
         for (int i = 0; i < this.Cars.size(); i++) {
             Car car = this.Cars.get(i);
-            car.Drive(this.Track.get(this.CurrentTrackSection));
+            car.Drive(Main.gameEngine.track1.get(this.CurrentTrackSection));
             this.CurrentTrackSection++;
         }
 
@@ -27,7 +27,7 @@ public class Race {
 
     private TrackSection GetNextTrackSection(){
         System.out.println(CurrentTrackSection++);
-        if (Track < CurrentTrackSection) {
+        if (Main.gameEngine.get_tracks().size() < CurrentTrackSection) {
 
         }
         // gibt immer die  nächste TrackSection des Tracks zurück... sollte die Anzahl der TrackSections überschritten worden sein, dann die CurrenttrackSection auf 0 setzen
