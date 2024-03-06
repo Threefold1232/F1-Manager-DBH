@@ -50,7 +50,10 @@ public class GameEngine {
             System.out.println("                                 ");
             System.out.println("Current Track Section: " + section);
 
-
+                for (Car car : cars){
+                    car.Drive(section);
+                    car.Print();
+                }
             try
             {
                 TimeUnit.SECONDS.sleep(3);
@@ -59,10 +62,6 @@ public class GameEngine {
             catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-                for (Car car : cars){
-                    car.Drive(section);
-                    car.Print();
-                }
         }
     }
 
@@ -81,7 +80,7 @@ public class GameEngine {
 
     private void GenerateDrivers(){
         this._drivers = new ArrayList<Driver>();
-        this._drivers.add(new Driver("Verstappen", 30, 15));
+        this._drivers.add(new Driver("Verstappen", 10, 15));
         this._drivers.add(new Driver("Hamilton", 16, 8));
         this._drivers.add(new Driver("Norris", 11, 19));
         Collections.shuffle(this._drivers);
@@ -89,9 +88,9 @@ public class GameEngine {
 
     private void GenerateCars(){
         this._cars = new ArrayList<Car>();
-        this._cars.add(new Car("RedBull", 100, 1.4, 350));
-        this._cars.add(new Car("Mercedes", 90, 1.1, 300));
-        this._cars.add(new Car("McLaren", 85, 1.2, 330));
+        this._cars.add(new Car("RedBull", 0, 1.3, 350, 50));
+        this._cars.add(new Car("Mercedes", 0, 1.1, 300, 40));
+        this._cars.add(new Car("McLaren", 0, 1.2, 330, 30));
         Collections.shuffle(this._cars);
     }
 
