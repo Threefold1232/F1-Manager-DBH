@@ -67,6 +67,9 @@ public class GameEngine {
             catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+
+            Race race = new Race("Monaco", track, cars);
+
         }
     }
 
