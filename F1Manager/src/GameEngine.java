@@ -27,7 +27,6 @@ public class GameEngine {
         for (int i = 0; i < 3; i++) {
             Car car = this._cars.get(i);
             car.SetDriver(this._drivers.get(i));
-            car.Print();
             allCars.add(car);
 
             try
@@ -57,8 +56,14 @@ public class GameEngine {
 
                 for (Car car : cars){
                     car.Drive(section);
-                    car.Print();
                 }
+
+            Race race = new Race("Monaco", track, cars);
+                race.Simulate();
+
+            System.out.println("                                 ");
+            System.out.println("------------------------------------------");
+
             try
             {
                 TimeUnit.SECONDS.sleep(3);
@@ -67,9 +72,6 @@ public class GameEngine {
             catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
-            Race race = new Race("Monaco", track, cars);
-
         }
     }
 

@@ -30,9 +30,8 @@ public class Race {
             }
 
             System.out.flush();
-        }
 
-        ArrayList<String> saveTrackSection = new ArrayList<>();
+        }
 
     }
 
@@ -46,6 +45,7 @@ public class Race {
             return GetNextTrackSection();
         }
     }
+
 
     private class TrackProgress {
 
