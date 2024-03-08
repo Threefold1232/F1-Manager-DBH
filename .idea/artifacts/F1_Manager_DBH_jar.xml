@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="F1-Manager-DBH:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/F1_Manager_DBH_jar</output-path>
+    <root id="archive" name="F1-Manager-DBH.jar">
+      <element id="module-output" name="F1-Manager-DBH" />
+    </root>
+  </artifact>
+</component>
