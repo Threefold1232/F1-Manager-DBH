@@ -1,18 +1,15 @@
-import javax.swing.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class GameEngine {
 
+    public List<TrackSection> track1;
     private ArrayList<Driver> _drivers;
     private ArrayList<Car> _cars;
     private ArrayList<Track> _tracks;
-    public List<TrackSection> track1;
-
-    public ArrayList<Track> get_tracks() {
-        return _tracks;
-    }
 
     public GameEngine() {
         GenerateDrivers();
@@ -20,21 +17,22 @@ public class GameEngine {
         GenerateTracks();
     }
 
+    public ArrayList<Track> get_tracks() {
+        return _tracks;
+    }
+
     public ArrayList<Car> GetAllRacingCars() {
 
-        ArrayList<Car> allCars  = new ArrayList<>();
+        ArrayList<Car> allCars = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < _drivers.size(); i++) {
             Car car = this._cars.get(i);
             car.SetDriver(this._drivers.get(i));
             allCars.add(car);
 
-            try
-            {
+            try {
                 TimeUnit.SECONDS.sleep(1);
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -42,10 +40,9 @@ public class GameEngine {
         return allCars;
     }
 
-    public void start()
-    {
+    public void start() {
         var cars = GetAllRacingCars();
-        Track track = new Track("Monaco", 5000, 8, 6);
+        Track track = new Track("Spa", 8000, 15, 10);
 
         System.out.println("Track: " + track.Name + " (" + track.TrackSections + ")");
 
@@ -71,27 +68,22 @@ public class GameEngine {
             System.out.println("                                 ");
             System.out.println("------------------------------------------");
 
-            try
-            {
+            try {
                 TimeUnit.SECONDS.sleep(1);
-            }
-
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
 
 
-        for (Car car : cars)
-        {
+        for (Car car : cars) {
             if (car.Distance >= track.Length) {
-                System.out.println(car.Driver.Name + "won  in " + track.Name);
+                System.out.println(car.Driver.Name + "won in " + track.Name);
             }
         }
 
 
     }
-
 
 
     private int GetRandomNumber(int min, int max) {
@@ -100,11 +92,9 @@ public class GameEngine {
         return randomNum;
     }
 
-    private boolean RaceFinished(Track track, ArrayList<Car> cars)
-    {
-        for (Car car : cars)
-        {
-            if (car.Distance >= track.Length){
+    private boolean RaceFinished(Track track, ArrayList<Car> cars) {
+        for (Car car : cars) {
+            if (car.Distance >= track.Length) {
                 return true;
             }
         }
@@ -113,23 +103,29 @@ public class GameEngine {
 
     }
 
-    private void GenerateDrivers(){
+    private void GenerateDrivers() {
         this._drivers = new ArrayList<Driver>();
-        this._drivers.add(new Driver("Verstappen", 10, 15));
-        this._drivers.add(new Driver("Hamilton", 16, 8));
-        this._drivers.add(new Driver("Norris  ", 11, 19));
+        this._drivers.add(new Driver("Verstappen ", 38, 33));
+        this._drivers.add(new Driver("Hamilton ", 33, 28));
+        this._drivers.add(new Driver("Norris  ", 31, 39));
+        this._drivers.add(new Driver("Piastri  ", 32, 36));
+        this._drivers.add(new Driver("Perez    ", 33, 30));
+        this._drivers.add(new Driver("Russel  ", 31, 31));
         Collections.shuffle(this._drivers);
     }
 
-    private void GenerateCars(){
+    private void GenerateCars() {
         this._cars = new ArrayList<Car>();
-        this._cars.add(new Car("RedBull", 0, 1.3, 350, 50));
+        this._cars.add(new Car("RedBull", 0, 1.2, 350, 50));
+        this._cars.add(new Car("Mercedes", 0, 1.1, 300, 40));
+        this._cars.add(new Car("McLaren", 0, 1.2, 320, 30));
+        this._cars.add(new Car("RedBull", 0, 1.2, 350, 50));
         this._cars.add(new Car("Mercedes", 0, 1.1, 300, 40));
         this._cars.add(new Car("McLaren", 0, 1.2, 320, 30));
         Collections.shuffle(this._cars);
     }
 
-    private void GenerateTracks(){
+    private void GenerateTracks() {
 
     }
 

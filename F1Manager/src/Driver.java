@@ -3,24 +3,21 @@ public class Driver {
     float SpeedBonus;
     float CornerBonus;
 
-    public Driver(String Name, float SpeedBonus, float Cornerbonus){
+    public Driver(String Name, float SpeedBonus, float Cornerbonus) {
         this.Name = Name;
         this.SpeedBonus = SpeedBonus;
         this.CornerBonus = Cornerbonus;
     }
 
-    public String GetName()
-    {
+    public String GetName() {
         return Name;
     }
 
-    public float GetSpeedBonus()
-    {
+    public float GetSpeedBonus() {
         return SpeedBonus;
     }
 
-    public float GetCornerBonus()
-    {
+    public float GetCornerBonus() {
         return CornerBonus;
     }
 

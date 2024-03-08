@@ -1,7 +1,5 @@
-import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Track {
@@ -20,20 +18,19 @@ public class Track {
         TrackSections = GenerateTrack();
     }
 
-    private ArrayList<TrackSection> GenerateTrack()
-    {
+    private ArrayList<TrackSection> GenerateTrack() {
         ArrayList<TrackSection> track = new ArrayList<TrackSection>();
 
-        for (int i = 0; i < Corners; i++){
+        for (int i = 0; i < Corners; i++) {
             track.add(TrackSection.Curve);
         }
 
-        for (int i = 0; i < Straights; i++){
+        for (int i = 0; i < Straights; i++) {
             track.add(TrackSection.Straight);
         }
 
-        int randomNum = GetRandomNumber(2, 10);
-        for (int i = 0; i < randomNum; i++){
+        int randomNum = GetRandomNumber(5, 15);
+        for (int i = 0; i < randomNum; i++) {
             track.add(TrackSection.Normal);
         }
 

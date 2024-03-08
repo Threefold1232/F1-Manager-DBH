@@ -1,15 +1,15 @@
-import java.io.IOException;
+import java.awt.*;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class Race {
-            String Name;
+    String Name;
 
-            Track Track;
-            int CurrentTrackSection;
-            TrackSection section;
-            ArrayList<Car> Cars;
+    Track Track;
+    int CurrentTrackSection;
+    TrackSection section;
+    ArrayList<Car> Cars;
 
     public Race(String name, Track track, ArrayList<Car> cars) {
         this.Name = name;
@@ -17,14 +17,26 @@ public class Race {
         this.Cars = cars;
     }
 
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    public static final String ANSI_BLUE_DARK = "\033[34m";
+
+    public static final String ANSI_BLUE = "\033[96m";
+
+    public static final String ANSI_ORANGE = "\033[33m";
+
+
     public void Simulate() {
         TrackSection currentTrackSection = Track.TrackSections.get(this.CurrentTrackSection);
         String output = "";
         for (Car car : this.Cars) {
             // TODO: Hier das Team, den Fahrer und die aktuelle Geschindigkeit for dem Fortschrittsbalkne ausgeben
             DecimalFormat df = new DecimalFormat("0.00");
+
             output += car.Team + ":\t" + car.Driver.Name + "\t(" + df.format(car.Speed) + "km/h) \t";
+
             car.Drive(currentTrackSection);
+
             // schritt 1: die Länge von einem Prozent der Strecke errechene
             double onePercentOfTrackLength = Track.Length / 100;
 
@@ -33,16 +45,30 @@ public class Race {
 
             // schritt 3: Gebe entsprechen des vorigen Ergebnisses den Progress aus
             for (int x = 0; x < trackProgressInPercent; x++) {
-                output += "|";
+
+                if (car.Team.equals("RedBull")) {
+                    output += ANSI_BLUE_DARK + "|" + ANSI_RESET;
+
+                } else if (car.Team.equals("Mercedes")) {
+                    output += ANSI_BLUE + "|" + ANSI_RESET;
+
+                } else if (car.Team.equals("McLaren")) {
+                    output += ANSI_ORANGE + "|" + ANSI_RESET;
+                }
+
             }
 
-            output += "\n";
+            double number = trackProgressInPercent;
+
+            output +=  " \t" + df.format(trackProgressInPercent) + " % von 100" + "\n";
+
+
         }
 
         System.out.println(output);
     }
 
-    private TrackSection GetNextTrackSection(){
+    private TrackSection GetNextTrackSection() {
         System.out.println(CurrentTrackSection++);
         if (Main.gameEngine.get_tracks().size() < CurrentTrackSection) {
             CurrentTrackSection = 0;

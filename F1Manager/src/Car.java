@@ -1,6 +1,3 @@
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Car {
     String Team;
     double Speed;
@@ -12,7 +9,7 @@ public class Car {
 
     double Distance = 0.0;
 
-    public Car(String Team, double Speed, double Acceleration, double MaxSpeed, int MinSpeed){
+    public Car(String Team, double Speed, double Acceleration, double MaxSpeed, int MinSpeed) {
         this.Team = Team;
         this.Speed = Speed;
         this.Acceleration = Acceleration;
@@ -20,36 +17,35 @@ public class Car {
         this.MinSpeed = MinSpeed;
     }
 
-    public void SetDriver(Driver driver){
+    public void SetDriver(Driver driver) {
         this.Driver = driver;
     }
 
-    public void Drive(TrackSection section)
-    {
+    public void Drive(TrackSection section) {
         // bei Normal, Beschleunigen addieren
-        if (section == TrackSection.Normal){
-            Speed = (Speed + Driver.SpeedBonus) * Acceleration;
+        if (section == TrackSection.Normal) {
+            Speed = Speed + Acceleration * 40;
         }
         // bei Kurve, beschleunigung abziehen
-        if (section == TrackSection.Curve){
-            Speed = (Speed + Driver.CornerBonus) / (float)(1.5*Acceleration) ;
+        if (section == TrackSection.Curve) {
+            Speed = (Speed + Driver.CornerBonus) / (float) (1.5 * Acceleration);
         }
         // bei Gerade, beschleunigung 1,5 mal adidieren
-        if (section == TrackSection.Straight){
-            Speed = (Speed + Driver.SpeedBonus) * (float)(Acceleration * 1.5);
+        if (section == TrackSection.Straight) {
+            Speed = (Speed + Driver.SpeedBonus) * (float) (Acceleration * 1.5);
         }
 
-        if (Speed > MaxSpeed){
+        if (Speed > MaxSpeed) {
             Speed = MaxSpeed;
         }
 
-        if (Speed < MinSpeed){
+        if (Speed < MinSpeed) {
             Speed = MinSpeed + Driver.CornerBonus;
         }
         this.Distance += GetDistance();
     }
 
-    public void Print(){
+    public void Print() {
         String output = this.Team + " (" + this.Driver.Name + "): " + this.Speed + " km/h (Acc: " + this.Acceleration + " x , Max: " + this.MaxSpeed + " km/h)" + "MinSpeed: " + this.MinSpeed + "km/h";
         System.out.println(output);
         System.out.println("---------------------------------");
@@ -59,7 +55,7 @@ public class Car {
         return Distance;
     }
 
-    private double GetDistance(){
+    private double GetDistance() {
         return this.Speed / 3.6;
     }
 
