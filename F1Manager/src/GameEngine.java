@@ -46,34 +46,52 @@ public class GameEngine {
     {
         var cars = GetAllRacingCars();
         Track track = new Track("Monaco", 5000, 8, 6);
-        track1 = track.GenerateTrack();
 
-        System.out.println("Track: " + track.Name + " (" + track1 + ")");
+        System.out.println("Track: " + track.Name + " (" + track.TrackSections + ")");
 
-        for (TrackSection section : track1){
+        int sectionIndex = 0;
+
+        while (!RaceFinished(track, cars)) {
             System.out.println("                                 ");
-            System.out.println("Current Track Section: " + section);
+            System.out.println("Current Track Section: " + track.TrackSections.get(sectionIndex));
 
-                for (Car car : cars){
-                    car.Drive(section);
-                }
+            for (Car car : cars) {
+                car.Drive(track.TrackSections.get(sectionIndex));
+            }
 
             Race race = new Race("Monaco", track, cars);
-                race.Simulate();
+            race.Simulate();
+
+            sectionIndex++;
+
+            if (sectionIndex >= track.TrackSections.size()) {
+                sectionIndex = 0;
+            }
 
             System.out.println("                                 ");
             System.out.println("------------------------------------------");
 
             try
             {
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(1);
             }
 
             catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+
+
+        for (Car car : cars)
+        {
+            if (car.Distance >= track.Length) {
+                System.out.println(car.Driver.Name + "won  in " + track.Name);
+            }
+        }
+
+
     }
+
 
 
     private int GetRandomNumber(int min, int max) {
@@ -82,9 +100,16 @@ public class GameEngine {
         return randomNum;
     }
 
-    private void SetRandomDriverIntoRandomCar()
+    private boolean RaceFinished(Track track, ArrayList<Car> cars)
     {
+        for (Car car : cars)
+        {
+            if (car.Distance >= track.Length){
+                return true;
+            }
+        }
 
+        return false;
 
     }
 
@@ -92,7 +117,7 @@ public class GameEngine {
         this._drivers = new ArrayList<Driver>();
         this._drivers.add(new Driver("Verstappen", 10, 15));
         this._drivers.add(new Driver("Hamilton", 16, 8));
-        this._drivers.add(new Driver("Norris", 11, 19));
+        this._drivers.add(new Driver("Norris  ", 11, 19));
         Collections.shuffle(this._drivers);
     }
 
@@ -100,7 +125,7 @@ public class GameEngine {
         this._cars = new ArrayList<Car>();
         this._cars.add(new Car("RedBull", 0, 1.3, 350, 50));
         this._cars.add(new Car("Mercedes", 0, 1.1, 300, 40));
-        this._cars.add(new Car("McLaren", 0, 1.2, 330, 30));
+        this._cars.add(new Car("McLaren", 0, 1.2, 320, 30));
         Collections.shuffle(this._cars);
     }
 

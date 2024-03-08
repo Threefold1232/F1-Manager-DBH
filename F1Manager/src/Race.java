@@ -1,4 +1,7 @@
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Race {
             String Name;
@@ -15,9 +18,13 @@ public class Race {
     }
 
     public void Simulate() {
-        for (int i = 0; i < this.Cars.size(); i++) {
-            Car car = this.Cars.get(i);
-            car.Drive(Main.gameEngine.track1.get(this.CurrentTrackSection));
+        TrackSection currentTrackSection = Track.TrackSections.get(this.CurrentTrackSection);
+        String output = "";
+        for (Car car : this.Cars) {
+            // TODO: Hier das Team, den Fahrer und die aktuelle Geschindigkeit for dem Fortschrittsbalkne ausgeben
+            DecimalFormat df = new DecimalFormat("0.00");
+            output += car.Team + ":\t" + car.Driver.Name + "\t(" + df.format(car.Speed) + "km/h) \t";
+            car.Drive(currentTrackSection);
             // schritt 1: die Länge von einem Prozent der Strecke errechene
             double onePercentOfTrackLength = Track.Length / 100;
 
@@ -25,14 +32,14 @@ public class Race {
             double trackProgressInPercent = car.Distance / onePercentOfTrackLength;
 
             // schritt 3: Gebe entsprechen des vorigen Ergebnisses den Progress aus
-            for (int x = 0; x < trackProgressInPercent; x++){
-                System.out.print("|");
+            for (int x = 0; x < trackProgressInPercent; x++) {
+                output += "|";
             }
 
-            System.out.flush();
-
+            output += "\n";
         }
 
+        System.out.println(output);
     }
 
     private TrackSection GetNextTrackSection(){
@@ -46,10 +53,6 @@ public class Race {
         }
     }
 
-
-    private class TrackProgress {
-
-    }
 }
 
 //CLEAR

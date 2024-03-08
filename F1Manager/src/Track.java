@@ -10,14 +10,17 @@ public class Track {
     int Corners;
     int Straights;
 
+    ArrayList<TrackSection> TrackSections = new ArrayList<>();
+
     public Track(String name, int length, int corners, int straights) {
         Name = name;
         Length = length;
         Corners = corners;
         Straights = straights;
+        TrackSections = GenerateTrack();
     }
 
-    public ArrayList<TrackSection> GenerateTrack()
+    private ArrayList<TrackSection> GenerateTrack()
     {
         ArrayList<TrackSection> track = new ArrayList<TrackSection>();
 
