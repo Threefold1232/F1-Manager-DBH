@@ -42,7 +42,7 @@ public class GameEngine {
 
     public void start() {
         var cars = GetAllRacingCars();
-        Track track = new Track("Spa", 8000, 15, 10);
+        Track track = new Track("Spa", 3000, 15, 10);
 
         System.out.println("Track: " + track.Name + " (" + track.TrackSections + ")");
 

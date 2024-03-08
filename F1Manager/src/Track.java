@@ -4,11 +4,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Track {
     public String Name;
-    int Length;
-    int Corners;
-    int Straights;
-
-    ArrayList<TrackSection> TrackSections = new ArrayList<>();
+    public int Length;
+    private final int Corners;
+    private final int Straights;
+    public ArrayList<TrackSection> TrackSections = new ArrayList<>();
 
     public Track(String name, int length, int corners, int straights) {
         Name = name;

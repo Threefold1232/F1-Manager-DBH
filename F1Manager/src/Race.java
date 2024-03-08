@@ -58,10 +58,7 @@ public class Race {
 
             }
 
-            double number = trackProgressInPercent;
-
             output +=  " \t" + df.format(trackProgressInPercent) + " % von 100" + "\n";
-
 
         }
 
