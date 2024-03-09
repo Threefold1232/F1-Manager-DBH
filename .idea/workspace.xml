@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="39abc208-4e56-4293-ba1d-4c58b9bf6942" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/shelf/Uncommitted_changes_before_Update_at_08_03_2024_14_01_[Changes]/Car.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/shelf/Uncommitted_changes_before_Update_at_08_03_2024_14_01_[Changes]/Driver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/shelf/Uncommitted_changes_before_Update_at_08_03_2024_14_01_[Changes]/Race.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/shelf/Uncommitted_changes_before_Update_at_08_03_2024_14_01_[Changes]/Track.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/shelf/Uncommitted_changes_before_Update_at_08_03_2024_14_01_[Changes]/TrackSection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/shelf/Uncommitted_changes_before_Update_at_08_03_2024_14_01_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/shelf/Uncommitted_changes_before_Update_at_08_03_2024_14_01__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F1Manager/.idea/workspace.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2dRfaOkXjSfa8zV2ku9SvZtGIKQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main-2.0",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="F1-Manager-DBH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="39abc208-4e56-4293-ba1d-4c58b9bf6942" name="Changes" comment="" />
+      <created>1709975878673</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709975878673</updated>
+      <workItem from="1709975882953" duration="165000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
