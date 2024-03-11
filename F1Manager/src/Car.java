@@ -24,11 +24,11 @@ public class Car {
     public void Drive(TrackSection section) {
         // bei Normal, Beschleunigen addieren
         if (section == TrackSection.Normal) {
-            Speed = Speed + Acceleration * 40;
+            Speed = Speed + Acceleration * 30;
         }
         // bei Kurve, beschleunigung abziehen
         if (section == TrackSection.Curve) {
-            Speed = (Speed + Driver.CornerBonus) / (float) (1.5 * Acceleration);
+            Speed = (Speed + Driver.CornerBonus) / (float) (1.8 * Acceleration);
         }
         // bei Gerade, beschleunigung 1,5 mal adidieren
         if (section == TrackSection.Straight) {
@@ -36,7 +36,7 @@ public class Car {
         }
 
         if (Speed > MaxSpeed) {
-            Speed = MaxSpeed;
+            Speed = MaxSpeed + (Driver.SpeedBonus / 2);
         }
 
         if (Speed < MinSpeed) {

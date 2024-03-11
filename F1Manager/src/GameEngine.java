@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
@@ -101,14 +98,23 @@ public class GameEngine {
             }
         }
 
+        ArrayList<Car> finishedCars = new ArrayList<>();
 
         for (Car car : cars) {
             if (car.Distance >= track.Length) {
-                System.out.println(car.Driver.Name + "won in " + track.Name);
+                finishedCars.add(car);
             }
         }
 
-
+        if (!finishedCars.isEmpty()) {
+            Car winner = Collections.max(finishedCars, Comparator.comparing(Car::getDistance));
+            long count = finishedCars.stream().filter(car -> car.getDistance() == track.Length).count();
+            if (count > 1) {
+                System.out.println("It was close, but " + winner.Driver.Name + " (" + winner.Team + ") came out on top");
+            } else {
+                System.out.println("The winner is: " + winner.Driver.Name + " (" + winner.Team + ")");
+            }
+        }
     }
 
 
@@ -131,21 +137,21 @@ public class GameEngine {
 
     private void GenerateDrivers() {
         this._drivers = new ArrayList<Driver>();
-        this._drivers.add(new Driver("Verstappen ", 38, 33));
-        this._drivers.add(new Driver("Hamilton ", 33, 28));
-        this._drivers.add(new Driver("Norris  ", 31, 39));
-        this._drivers.add(new Driver("Piastri  ", 32, 36));
-        this._drivers.add(new Driver("Perez    ", 33, 30));
-        this._drivers.add(new Driver("Russel  ", 31, 31));
+        this._drivers.add(new Driver("Verstappen ", 43, 35));
+        this._drivers.add(new Driver("Hamilton ", 27, 31));
+        this._drivers.add(new Driver("Norris  ", 38, 33));
+        this._drivers.add(new Driver("Piastri  ", 35, 36));
+        this._drivers.add(new Driver("Perez    ", 29, 30));
+        this._drivers.add(new Driver("Russel  ", 30, 29));
         Collections.shuffle(this._drivers);
     }
 
     private void GenerateCars() {
         this._cars = new ArrayList<Car>();
-        this._cars.add(new Car("RedBull", 0, 1.2, 350, 50));
+        this._cars.add(new Car("RedBull", 0, 1.25, 350, 50));
         this._cars.add(new Car("Mercedes", 0, 1.1, 300, 40));
         this._cars.add(new Car("McLaren", 0, 1.2, 320, 30));
-        this._cars.add(new Car("RedBull", 0, 1.2, 350, 50));
+        this._cars.add(new Car("RedBull", 0, 1.25, 350, 50));
         this._cars.add(new Car("Mercedes", 0, 1.1, 300, 40));
         this._cars.add(new Car("McLaren", 0, 1.2, 320, 30));
         Collections.shuffle(this._cars);
