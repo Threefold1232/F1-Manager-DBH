@@ -5,6 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Track {
     public String Name;
     public int Length;
+    int cornerCount = 0;
+    int straightCount = 0;
     private final int Corners;
     private final int Straights;
     public ArrayList<TrackSection> TrackSections = new ArrayList<>();
@@ -22,10 +24,12 @@ public class Track {
 
         for (int i = 0; i < Corners; i++) {
             track.add(TrackSection.Curve);
+            cornerCount++;
         }
 
         for (int i = 0; i < Straights; i++) {
             track.add(TrackSection.Straight);
+            straightCount++;
         }
 
         int randomNum = GetRandomNumber(5, 15);
@@ -35,6 +39,7 @@ public class Track {
 
         Collections.shuffle(track);
         // TODO: prüfe an dieser Stelle, ob im Track niemals zwei Kurven aufeinadner folgen und niemals mehr als drei Gerade aufeinander folgen => bei Widersprüchen einfach nochmal shuffeln
+
 
         return track;
     }

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +11,10 @@ public class GameEngine {
     private ArrayList<Driver> _drivers;
     private ArrayList<Car> _cars;
     private ArrayList<Track> _tracks;
+    String trackName;
+    int trackCorners;
+    int trackstraights;
+    int tracklength;
 
     public GameEngine() {
         GenerateDrivers();
@@ -41,8 +46,29 @@ public class GameEngine {
     }
 
     public void start() {
+        Scanner trackInput = new Scanner(System.in);
+        Scanner lengthinput = new Scanner(System.in);
+        Scanner cornersInput = new Scanner(System.in);
+        Scanner straightsInput = new Scanner(System.in);
+
+        System.out.print("Enter Trackname: ");
+        trackName = trackInput.nextLine();
+        System.out.println("                                                  ");
+
+        System.out.print("Enter Tracklength (between 4000 and 10000): ");
+        tracklength = lengthinput.nextInt();
+        System.out.println("                                                  ");
+
+        System.out.print("Enter the Number of corners the Track should have: ");
+        trackCorners = cornersInput.nextInt();
+        System.out.println("                                                  ");
+
+        System.out.print("Enter the Number of straights the Track should have: ");
+        trackstraights = straightsInput.nextInt();
+
+
         var cars = GetAllRacingCars();
-        Track track = new Track("Spa", 3000, 15, 10);
+        Track track = new Track(trackName, tracklength, trackCorners, trackstraights);
 
         System.out.println("Track: " + track.Name + " (" + track.TrackSections + ")");
 
