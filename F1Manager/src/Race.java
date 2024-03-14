@@ -47,13 +47,13 @@ public class Race {
             for (int x = 0; x < trackProgressInPercent; x++) {
 
                 if (car.Team.equals("RedBull")) {
-                    output += ANSI_BLUE_DARK + "|" + ANSI_RESET;
+                    output += ANSI_BLUE_DARK + "\uD83C\uDFCE\uFE0F" + ANSI_RESET;
 
                 } else if (car.Team.equals("Mercedes")) {
-                    output += ANSI_BLUE + "|" + ANSI_RESET;
+                    output += ANSI_BLUE + "\uD83C\uDFCE\uFE0F" + ANSI_RESET;
 
                 } else if (car.Team.equals("McLaren")) {
-                    output += ANSI_ORANGE + "|" + ANSI_RESET;
+                    output += ANSI_ORANGE + "\uD83C\uDFCE\uFE0F" + ANSI_RESET;
                 }
 
             }

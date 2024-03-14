@@ -19,6 +19,8 @@ public class GameEngine {
         GenerateTracks();
     }
 
+
+
     public ArrayList<Track> get_tracks() {
         return _tracks;
     }
@@ -42,19 +44,30 @@ public class GameEngine {
         return allCars;
     }
 
-    public void start() {
+    public boolean start() {
         Scanner trackInput = new Scanner(System.in);
         Scanner lengthinput = new Scanner(System.in);
         Scanner cornersInput = new Scanner(System.in);
         Scanner straightsInput = new Scanner(System.in);
 
+
         System.out.print("Enter Trackname: ");
         trackName = trackInput.nextLine();
         System.out.println("                                                  ");
 
-        System.out.print("Enter Tracklength (between 4000 and 10000): ");
+        System.out.print("Enter Tracklength (between 4000 and 12000): ");
         tracklength = lengthinput.nextInt();
+
+        while ((tracklength > 10000) || (tracklength < 4000)){
+            System.out.println("The Length can only be between 4000m and 10000m, otherwise it takes too long to simulate.");
+            System.out.println("                                                  ");
+
+            lengthinput = new Scanner(System.in);
+            System.out.print("Enter Tracklength (between 4000 and 12000): ");
+            tracklength = lengthinput.nextInt();
+        }
         System.out.println("                                                  ");
+
 
         System.out.print("Enter the Number of corners the Track should have: ");
         trackCorners = cornersInput.nextInt();
@@ -115,6 +128,7 @@ public class GameEngine {
                 System.out.println("The winner is: " + winner.Driver.Name + " (" + winner.Team + ")");
             }
         }
+        return false;
     }
 
 
