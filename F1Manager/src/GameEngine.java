@@ -33,12 +33,6 @@ public class GameEngine {
             Car car = this._cars.get(i);
             car.SetDriver(this._drivers.get(i));
             allCars.add(car);
-
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
 
         return allCars;
@@ -105,7 +99,6 @@ public class GameEngine {
 
 
         }
-
 
         var cars = GetAllRacingCars();
         Track track = new Track(trackName, tracklength, trackCorners, trackstraights);
@@ -180,14 +173,30 @@ public class GameEngine {
     }
 
     private void GenerateDrivers() {
-        this._drivers = new ArrayList<Driver>();
-        this._drivers.add(new Driver("Verstappen ", 43, 35));
-        this._drivers.add(new Driver("Hamilton ", 27, 31));
-        this._drivers.add(new Driver("Norris  ", 38, 33));
-        this._drivers.add(new Driver("Piastri  ", 35, 36));
-        this._drivers.add(new Driver("Perez    ", 29, 30));
-        this._drivers.add(new Driver("Russel  ", 30, 29));
-        Collections.shuffle(this._drivers);
+        Scanner randomDriverAttributesInput = new Scanner(System.in);
+        System.out.println("Do you want to randomly Generate the Driver Attributes (Input Yes / No)? ");
+        String randomDriverAttributes = randomDriverAttributesInput.nextLine();
+        System.out.println("                                                                         ");
+        if (randomDriverAttributes.equals("Yes")){
+            this._drivers = new ArrayList<Driver>();
+            this._drivers.add(new Driver("Verstappen ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
+            this._drivers.add(new Driver("Hamilton ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
+            this._drivers.add(new Driver("Norris  ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
+            this._drivers.add(new Driver("Piastri  ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
+            this._drivers.add(new Driver("Perez    ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
+            this._drivers.add(new Driver("Russel  ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
+            Collections.shuffle(this._drivers);
+        }
+        else if (randomDriverAttributes.equals("No")){
+            this._drivers = new ArrayList<Driver>();
+            this._drivers.add(new Driver("Verstappen ", 43, 35));
+            this._drivers.add(new Driver("Hamilton ", 27, 31));
+            this._drivers.add(new Driver("Norris  ", 38, 33));
+            this._drivers.add(new Driver("Piastri  ", 35, 36));
+            this._drivers.add(new Driver("Perez    ", 29, 30));
+            this._drivers.add(new Driver("Russel  ", 30, 29));
+            Collections.shuffle(this._drivers);
+        }
     }
 
     private void GenerateCars() {
