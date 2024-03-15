@@ -10,12 +10,11 @@ public class Main {
         gameEngine = new GameEngine();
         gameEngine.start();
         Scanner restartInput = new Scanner(System.in);
-        System.out.println("Do you want to Start a new Race (Input: Yes / No?");
+        System.out.println("Do you want to Start a new Race (Input: Yes / No)?");
         String restart = restartInput.nextLine();
 
         if (restart.equals("Yes")){
-            gameEngine = new GameEngine();
-            gameEngine.start();
+            main(args);
         }
     }
 }

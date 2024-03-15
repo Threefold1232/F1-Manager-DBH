@@ -100,6 +100,8 @@ public class GameEngine {
 
         var cars = GetAllRacingCars();
         Track track = new Track(trackName, tracklength, trackCorners, trackstraights);
+        System.out.println(track.Length);
+
 
         System.out.println("Track: " + track.Name + " (" + track.TrackSections + ")");
 
@@ -143,12 +145,8 @@ public class GameEngine {
 
         if (!finishedCars.isEmpty()) {
             Car winner = Collections.max(finishedCars, Comparator.comparing(Car::getDistance));
-            long count = finishedCars.stream().filter(car -> car.getDistance() == track.Length).count();
-            if (count > 1) {
-                System.out.println("It was close, but " + winner.Driver.Name + " (" + winner.Team + ") came out on top");
-            } else {
-                System.out.println("The winner is: " + winner.Driver.Name + " (" + winner.Team + ")");
-            }
+            System.out.println("The winner is: " + winner.Driver.Name + " (" + winner.Team + ")");
+            System.out.println("                                                                ");
         }
     }
 
