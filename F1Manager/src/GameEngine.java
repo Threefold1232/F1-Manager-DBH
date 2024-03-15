@@ -50,31 +50,61 @@ public class GameEngine {
         Scanner cornersInput = new Scanner(System.in);
         Scanner straightsInput = new Scanner(System.in);
 
+        Scanner randomTrackInput = new Scanner(System.in);
+        System.out.print("Do you want to create a Random Track or a Custom Track? (Input: 'Random' for Random Track and 'Custom' for Custom Track): ");
+        String randomTrack = randomTrackInput.nextLine();
 
-        System.out.print("Enter Trackname: ");
-        trackName = trackInput.nextLine();
-        System.out.println("                                                  ");
-
-        System.out.print("Enter Tracklength (between 4000 and 12000): ");
-        tracklength = lengthinput.nextInt();
-
-        while ((tracklength > 10000) || (tracklength < 4000)){
-            System.out.println("The Length can only be between 4000m and 10000m, otherwise it takes too long to simulate.");
+        if (randomTrack.equals("Random")){
+            trackName = "Random";
+            tracklength = GetRandomNumber(4000, 10000);
+            trackCorners = GetRandomNumber(2, 20);
+            trackstraights = GetRandomNumber(2, 10);
+        }
+        else if (randomTrack.equals("Custom")){
+            System.out.print("Enter Trackname: ");
+            trackName = trackInput.nextLine();
             System.out.println("                                                  ");
 
-            lengthinput = new Scanner(System.in);
+
             System.out.print("Enter Tracklength (between 4000 and 12000): ");
             tracklength = lengthinput.nextInt();
+            while ((tracklength > 10000) || (tracklength < 4000)){
+                System.out.println("The Length can only be between 4000m and 10000m, otherwise it takes too long to simulate.");
+                System.out.println("                                                  ");
+
+                lengthinput = new Scanner(System.in);
+                System.out.print("Enter Tracklength (between 4000 and 12000): ");
+                tracklength = lengthinput.nextInt();
+            }
+            System.out.println("                                                  ");
+
+
+            System.out.print("Enter the Number of corners the Track should have (max. 20): ");
+            trackCorners = cornersInput.nextInt();
+            while (trackCorners > 20){
+                System.out.println("The maximum Number of corners can only be 20");
+                System.out.println("                                                  ");
+
+                cornersInput = new Scanner(System.in);
+                System.out.print("Enter the Number of corners the Track should have (max. 20): ");
+                trackCorners = cornersInput.nextInt();
+            }
+            System.out.println("                                                  ");
+
+
+            System.out.print("Enter the Number of straights the Track should have (max. 10): ");
+            trackstraights = straightsInput.nextInt();
+            while (trackstraights > 10){
+                System.out.println("The maximum Number of Straights can only be 10");
+                System.out.println("                                                  ");
+
+                straightsInput = new Scanner(System.in);
+                System.out.print("Enter the Number of Straights the Track should have (max. 10): ");
+                trackstraights = straightsInput.nextInt();
+            }
+
+
         }
-        System.out.println("                                                  ");
-
-
-        System.out.print("Enter the Number of corners the Track should have: ");
-        trackCorners = cornersInput.nextInt();
-        System.out.println("                                                  ");
-
-        System.out.print("Enter the Number of straights the Track should have: ");
-        trackstraights = straightsInput.nextInt();
 
 
         var cars = GetAllRacingCars();
@@ -174,6 +204,4 @@ public class GameEngine {
     private void GenerateTracks() {
 
     }
-
-
 }
