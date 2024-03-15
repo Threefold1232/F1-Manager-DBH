@@ -5,20 +5,19 @@ import java.util.concurrent.TimeUnit;
 public class GameEngine {
 
     public List<TrackSection> track1;
-    private ArrayList<Driver> _drivers;
-    private ArrayList<Car> _cars;
-    private ArrayList<Track> _tracks;
     String trackName;
     int trackCorners;
     int trackstraights;
     int tracklength;
+    private ArrayList<Driver> _drivers;
+    private ArrayList<Car> _cars;
+    private ArrayList<Track> _tracks;
 
     public GameEngine() {
         GenerateDrivers();
         GenerateCars();
         GenerateTracks();
     }
-
 
 
     public ArrayList<Track> get_tracks() {
@@ -38,7 +37,7 @@ public class GameEngine {
         return allCars;
     }
 
-    public boolean start() {
+    public void start() {
         Scanner trackInput = new Scanner(System.in);
         Scanner lengthinput = new Scanner(System.in);
         Scanner cornersInput = new Scanner(System.in);
@@ -48,13 +47,12 @@ public class GameEngine {
         System.out.print("Do you want to create a Random Track or a Custom Track? (Input: 'Random' for Random Track and 'Custom' for Custom Track): ");
         String randomTrack = randomTrackInput.nextLine();
 
-        if (randomTrack.equals("Random")){
+        if (randomTrack.equals("Random")) {
             trackName = "Random";
             tracklength = GetRandomNumber(4000, 10000);
             trackCorners = GetRandomNumber(2, 20);
             trackstraights = GetRandomNumber(2, 10);
-        }
-        else if (randomTrack.equals("Custom")){
+        } else if (randomTrack.equals("Custom")) {
             System.out.print("Enter Trackname: ");
             trackName = trackInput.nextLine();
             System.out.println("                                                  ");
@@ -62,7 +60,7 @@ public class GameEngine {
 
             System.out.print("Enter Tracklength (between 4000 and 12000): ");
             tracklength = lengthinput.nextInt();
-            while ((tracklength > 10000) || (tracklength < 4000)){
+            while ((tracklength > 10000) || (tracklength < 4000)) {
                 System.out.println("The Length can only be between 4000m and 10000m, otherwise it takes too long to simulate.");
                 System.out.println("                                                  ");
 
@@ -75,7 +73,7 @@ public class GameEngine {
 
             System.out.print("Enter the Number of corners the Track should have (max. 20): ");
             trackCorners = cornersInput.nextInt();
-            while (trackCorners > 20){
+            while (trackCorners > 20) {
                 System.out.println("The maximum Number of corners can only be 20");
                 System.out.println("                                                  ");
 
@@ -88,7 +86,7 @@ public class GameEngine {
 
             System.out.print("Enter the Number of straights the Track should have (max. 10): ");
             trackstraights = straightsInput.nextInt();
-            while (trackstraights > 10){
+            while (trackstraights > 10) {
                 System.out.println("The maximum Number of Straights can only be 10");
                 System.out.println("                                                  ");
 
@@ -110,6 +108,7 @@ public class GameEngine {
         while (!RaceFinished(track, cars)) {
             System.out.println("                                 ");
             System.out.println("Current Track Section: " + track.TrackSections.get(sectionIndex));
+
 
             for (Car car : cars) {
                 car.Drive(track.TrackSections.get(sectionIndex));
@@ -151,14 +150,12 @@ public class GameEngine {
                 System.out.println("The winner is: " + winner.Driver.Name + " (" + winner.Team + ")");
             }
         }
-        return false;
     }
 
 
     private int GetRandomNumber(int min, int max) {
-        int randomNum = ThreadLocalRandom.current().nextInt(min, max);
 
-        return randomNum;
+        return ThreadLocalRandom.current().nextInt(min, max);
     }
 
     private boolean RaceFinished(Track track, ArrayList<Car> cars) {
@@ -174,10 +171,14 @@ public class GameEngine {
 
     private void GenerateDrivers() {
         Scanner randomDriverAttributesInput = new Scanner(System.in);
+        for (int i = 0; i < 3; i++){
+            System.out.println("                                       ");
+        }
+
         System.out.println("Do you want to randomly Generate the Driver Attributes (Input Yes / No)? ");
         String randomDriverAttributes = randomDriverAttributesInput.nextLine();
         System.out.println("                                                                         ");
-        if (randomDriverAttributes.equals("Yes")){
+        if (randomDriverAttributes.equals("Yes")) {
             this._drivers = new ArrayList<Driver>();
             this._drivers.add(new Driver("Verstappen ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
             this._drivers.add(new Driver("Hamilton ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
@@ -186,8 +187,7 @@ public class GameEngine {
             this._drivers.add(new Driver("Perez    ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
             this._drivers.add(new Driver("Russel  ", GetRandomNumber(20, 50), GetRandomNumber(20, 50)));
             Collections.shuffle(this._drivers);
-        }
-        else if (randomDriverAttributes.equals("No")){
+        } else if (randomDriverAttributes.equals("No")) {
             this._drivers = new ArrayList<Driver>();
             this._drivers.add(new Driver("Verstappen ", 43, 35));
             this._drivers.add(new Driver("Hamilton ", 27, 31));

@@ -1,11 +1,12 @@
-import java.awt.*;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Race {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE_DARK = "\033[34m";
+    public static final String ANSI_BLUE = "\033[96m";
+    public static final String ANSI_ORANGE = "\033[33m";
     String Name;
-
     Track Track;
     int CurrentTrackSection;
     TrackSection section;
@@ -16,15 +17,6 @@ public class Race {
         this.Track = track;
         this.Cars = cars;
     }
-
-    public static final String ANSI_RESET = "\u001B[0m";
-
-    public static final String ANSI_BLUE_DARK = "\033[34m";
-
-    public static final String ANSI_BLUE = "\033[96m";
-
-    public static final String ANSI_ORANGE = "\033[33m";
-
 
     public void Simulate() {
         TrackSection currentTrackSection = Track.TrackSections.get(this.CurrentTrackSection);
@@ -47,18 +39,18 @@ public class Race {
             for (int x = 0; x < trackProgressInPercent; x++) {
 
                 if (car.Team.equals("RedBull")) {
-                    output += ANSI_BLUE_DARK + "\uD83C\uDFCE\uFE0F" + ANSI_RESET;
+                    output += ANSI_BLUE_DARK + "|" + ANSI_RESET;
 
                 } else if (car.Team.equals("Mercedes")) {
-                    output += ANSI_BLUE + "\uD83C\uDFCE\uFE0F" + ANSI_RESET;
+                    output += ANSI_BLUE + "|" + ANSI_RESET;
 
                 } else if (car.Team.equals("McLaren")) {
-                    output += ANSI_ORANGE + "\uD83C\uDFCE\uFE0F" + ANSI_RESET;
+                    output += ANSI_ORANGE + "|" + ANSI_RESET;
                 }
 
             }
 
-            output +=  " \t" + df.format(trackProgressInPercent) + " % von 100" + "\n";
+            output += " \t" + df.format(trackProgressInPercent) + " % von 100" + "\n";
 
         }
 
